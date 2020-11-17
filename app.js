@@ -3,11 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
+var cors = require('cors');
+var app = express();
+
+// middlewares
+app.use(cors());
+app.use(bodyParser.json());
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
@@ -46,6 +53,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-
-// mongodb+srv://moodup:moodup@cluster0.atnsz.mongodb.net/local_library?retryWrites=true&w=majority
